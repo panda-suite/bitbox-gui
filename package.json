@@ -1,9 +1,9 @@
 {
-  "name": "BITBOX",
+  "name": "BITBOX-GUI",
   "version": "0.7.8",
   "description": "A development framework for Bitcoin Cash",
   "main": "main.js",
-  "productName": "BITBOX",
+  "productName": "BITBOX GUI",
   "scripts": {
     "start": "electron .",
     "build": "webpack",
@@ -19,7 +19,7 @@
     "tutorial",
     "demo"
   ],
-  "author": "Gabriel Cardona w/ EARTH",
+  "author": "Bitcoin.com",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
