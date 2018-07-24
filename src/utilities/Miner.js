@@ -141,7 +141,6 @@ class Miner {
     tx.addOutput(scriptPubKey, value)
 
     let hex = tx.toHex();
-    console.log(hex)
 
     // add tx to mempool
     reduxStore.dispatch(addTx(hex));
@@ -151,7 +150,10 @@ class Miner {
   static mineBlock() {
     console.log('mining block')
 
-    let a = bitbox.BitcoinCash.address();
+    let m = bitbox.Mnemonic.generate(128);
+    let rootSeed = bitbox.Mnemonic.toSeed(m);
+    let node = bitbox.HDNode.fromSeed(rootSeed);
+    let a = bitbox.HDNode.toLegacyAddress(node);
     let script = bitbox.Script;
     let ecpair = bitbox.ECPair;
     let state = reduxStore.getState();
@@ -168,7 +170,6 @@ class Miner {
     mempool.transactions.forEach((hex, index) => {
       bitbox.RawTransactions.decodeRawTransaction(hex)
       .then((result) => {
-        result = JSON.parse(result);
         let inputs = [];
         result.vin.forEach((vin, index) => {
           let config = {

@@ -7,7 +7,7 @@ class Configuration {
       displayTestnet: false,
       usePassword: false,
       entropy: 16,
-      network: 'bitcoin',
+      network: 'bitcoincash',
       mnemonic: '',
       totalAccounts: 10,
       HDPath: {

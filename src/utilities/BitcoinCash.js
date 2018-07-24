@@ -1,7 +1,7 @@
 import Address from '../models/Address';
 
 import Bitcoin from 'bitcoinjs-lib';
-let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
+let BITBOXCli = require('bitbox-cli/lib/bitbox-cli').default;
 let bitbox = new BITBOXCli();
 import underscore from 'underscore';
 

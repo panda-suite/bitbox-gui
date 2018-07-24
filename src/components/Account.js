@@ -52,7 +52,7 @@ class Account extends Component {
     return (
       <tr className="Account">
         <td className='important'><span className='subheader'>ADDRESS {coinbase}</span> <br />{address} <br /><span className='hdPath'>{HDPath}/{index}&rsquo;/0/{addressHeight}</span></td>
-        <td className='important'><span className='subheader'>BALANCE</span> <br />{bitbox.BitcoinCash.toBitcoinCash(this.props.account.balance)} BCH</td>
+        <td className='important'><span className='subheader'>BALANCE</span> <br />{this.props.account.balance} BCH</td>
         <td><span className='subheader'>TX COUNT</span> <br />{this.props.account.txCount}</td>
         <td><span className='subheader'>ACCOUNT</span> <br />{index}</td>
         <td><button onClick={this.handleRedirect.bind(this)} className="pure-button openModal"><FontAwesomeIcon className="openModal" icon={faKey} /></button></td>

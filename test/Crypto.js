@@ -1,6 +1,6 @@
 let chai = require('chai');
 let assert = chai.assert;
-let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
+let BITBOXCli = require('bitbox-cli/lib/bitbox-cli').default;
 let bitbox = new BITBOXCli();
 
 describe('create SHA256Hash', () => {

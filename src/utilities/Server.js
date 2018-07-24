@@ -9,7 +9,7 @@ import cors from 'cors';
 
 import axios from 'axios';
 import bodyParser from 'body-parser';
-let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
+let BITBOXCli = require('bitbox-cli/lib/bitbox-cli').default;
 let bitbox = new BITBOXCli();
 import underscore from 'underscore';
 

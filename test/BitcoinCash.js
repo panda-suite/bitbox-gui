@@ -2,7 +2,7 @@ import BitcoinCash from '../src/utilities/BitcoinCash';
 import chai from 'chai';
 let assert = chai.assert;
 let fixtures = require('./fixtures/BitcoinCash.json')
-let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
+let BITBOXCli = require('bitbox-cli/lib/bitbox-cli').default;
 let bitbox = new BITBOXCli();
 
 describe('price conversion', () => {
