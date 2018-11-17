@@ -6,13 +6,16 @@ import faKey from '@fortawesome/fontawesome-free-solid/faKey';
 import faLock from '@fortawesome/fontawesome-free-solid/faLock';
 import faLockOpen from '@fortawesome/fontawesome-free-solid/faLockOpen';
 
+const BITBOXSDK = require('bitbox-sdk/lib/bitbox-sdk');
+const bitbox = new BITBOXSDK.default();
+
 class AccountModal extends Component {
   hideAccountModal(account) {
     this.props.hideAccountModal(account);
   }
 
   render() {
-    let address = this.props.account.addresses.getChainAddress(0);
+    let address = bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0), true, true);
     let addressHeight = this.props.account.addresses.chains[0].find(bitbox.Address.toLegacyAddress(address, true))
     let hdNode = bitbox.HDNode.fromXPriv(this.props.account.xpriv);
     let childNode = hdNode.derivePath(`0/${addressHeight}`);
@@ -20,13 +23,12 @@ class AccountModal extends Component {
     let xpriv = bitbox.HDNode.toXPriv(childNode);
     let xpub = bitbox.HDNode.toXPub(childNode);
 
-
     return (
       <div id="keyAccountModal" className="modal">
         <div className="modal-content">
           <div className="modal-header">
             <span onClick={this.hideAccountModal.bind(this, this.props.account)} className="close">&times;</span>
-            <h2><FontAwesomeIcon icon={faQrcode} /> {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(address, true) : address}</h2>
+            <h2><FontAwesomeIcon icon={faQrcode} /> {address}</h2>
           </div>
           <div className="modal-body">
             <h3><FontAwesomeIcon icon={faKey} /> Private Key WIF</h3>

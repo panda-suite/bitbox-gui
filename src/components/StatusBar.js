@@ -35,14 +35,17 @@ class StatusBar extends Component {
             {this.props.blockchain.chain.length}
           </li>
           <li className="pure-menu-item">
-            RPC SERVER <br /> http://127.0.0.1:8332
+            RPC SERVER <br /> http://127.0.0.1:43332
           </li>
           <li className="pure-menu-item">
             MINING STATUS <br /> AUTOMINING <FontAwesomeIcon icon={faSpinner} />
           </li>
-          <li className="pure-menu-item">
-            <button className='pure-button danger-background' onClick={this.createBlock.bind(this)}><FontAwesomeIcon icon={faCube} /> Create block</button>
-          </li>
+          
+         { false &&
+            <li className="pure-menu-item">
+              <button className='pure-button danger-background' onClick={this.createBlock.bind(this)}><FontAwesomeIcon icon={faCube} /> Create block</button>
+            </li>
+          }
 
           <li className="pure-menu-item">
             <button className='pure-button danger-background' onClick={this.syncChain.bind(this)}><FontAwesomeIcon icon={faCube} /> Sync chain</button>

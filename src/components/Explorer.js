@@ -21,7 +21,8 @@ class Explorer extends Component {
     let result;
     if(searchTerm !== '') {
       // first search by block index
-      result = underscore.findWhere(blockchain.chain, {index: +searchTerm});
+      result = underscore.findWhere(blockchain.chain, {height: +searchTerm});
+
       if(!result) {
         // next search by block header
         result = underscore.findWhere(blockchain.chain, {header: searchTerm});

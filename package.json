@@ -1,9 +1,9 @@
 {
-  "name": "BITBOX-GUI",
+  "name": "pandacash-explorer",
   "version": "0.7.8",
-  "description": "A development framework for Bitcoin Cash",
+  "description": "Explorer for Bitcoin Cash one-click blockchain",
   "main": "main.js",
-  "productName": "BITBOX GUI",
+  "productName": "Panda Explorer",
   "scripts": {
     "start": "electron .",
     "build": "webpack",
@@ -17,9 +17,13 @@
     "quick",
     "start",
     "tutorial",
-    "demo"
+    "demo",
+    "bitcoin",
+    "bitcoincash",
+    "bitbox",
+    "pandacash"
   ],
-  "author": "Bitcoin.com",
+  "author": "Adrian Barwicki @ Panda Suite",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",

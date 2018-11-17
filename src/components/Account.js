@@ -34,9 +34,9 @@ class Account extends Component {
     console.log(this.props.account.addresses.getChainAddress(0));
 
     if(this.props.displayCashaddr) {
-      address = <span>{bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0), true)}</span>;
+      address = <span>{bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0), true, true)}</span>;
     } else {
-      address = <span>{bitbox.Address.toLegacyAddress(this.props.account.addresses.getChainAddress(0), true)}</span>;
+      address = <span>{bitbox.Address.toLegacyAddress(this.props.account.addresses.getChainAddress(0), true, true)}</span>;
     }
 
     console.log(address);

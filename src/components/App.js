@@ -29,7 +29,7 @@ import SignAndVerifyContainer from '../containers/SignAndVerifyContainer'
 import ImportAndExportContainer from '../containers/ImportAndExportContainer'
 import ConvertContainer from '../containers/ConvertContainer';
 import StatusBarContainer from '../containers/StatusBarContainer';
-import ExplorerContainer from '../containers/ExplorerContainer'
+// import ExplorerContainer from '../containers/ExplorerContainer'
 
 // custom components
 import Configuration from '../components/Configuration';
@@ -125,10 +125,9 @@ class App extends Component {
           <div className="header main-header">
             <div className="pure-menu pure-menu-horizontal">
               <Link className="pure-menu-heading header-logo" to="/wallet">
-                <img src='assets/logo.png' /> <br />BitBox
+                <img src='assets/logo.png' /> <br />
               </Link>
               <ul className="pure-menu-list">
-
                 <li className="pure-menu-item">
                   <NavLink
                     isActive={pathMatch}
@@ -147,39 +146,30 @@ class App extends Component {
                     <FontAwesomeIcon icon={faCubes} /> Blocks
                   </NavLink>
                 </li>
-                <li className="pure-menu-item">
-                  <NavLink
-                    isActive={pathMatch}
-                    activeClassName="pure-menu-selected"
-                    className="pure-menu-link"
-                    to="/convert">
-                    <FontAwesomeIcon icon={faQrcode} /> Convert
-                  </NavLink>
-                </li>
-                <li className="pure-menu-item">
-                  <NavLink
-                    isActive={pathMatch}
-                    activeClassName="pure-menu-selected"
-                    className="pure-menu-link"
-                    to="/signandverify">
-                    <FontAwesomeIcon icon={faCheckCircle} /> Sign &amp; Verify
-                  </NavLink>
-                </li>
+                { false &&
+                  <li className="pure-menu-item">
+                    <NavLink
+                      isActive={pathMatch}
+                      activeClassName="pure-menu-selected"
+                      className="pure-menu-link"
+                      to="/convert">
+                      <FontAwesomeIcon icon={faQrcode} /> Convert
+                    </NavLink>
+                  </li>
+                }
+                { false &&
+                  <li className="pure-menu-item">
+                    <NavLink
+                      isActive={pathMatch}
+                      activeClassName="pure-menu-selected"
+                      className="pure-menu-link"
+                      to="/signandverify">
+                      <FontAwesomeIcon icon={faCheckCircle} /> Sign &amp; Verify
+                    </NavLink>
+                  </li>
+                }
               </ul>
-              <ul className="pure-menu-list right">
-                <li className="pure-menu-item Explorer">
-                  <ExplorerContainer />
-                </li>
-                <li className="pure-menu-item">
-                  <button className="importAndExportBtn" onClick={this.showExport.bind(this)}>
-                    <FontAwesomeIcon icon={faUpload} />
-                  </button>
-                </li>
-                <li className="pure-menu-item">
-                  <button className="importAndExportBtn" onClick={this.showImport.bind(this)}>
-                    <FontAwesomeIcon icon={faDownload} />
-                  </button>
-                </li>
+              { false && <ul className="pure-menu-list right">
                 <li className="pure-menu-item">
                   <NavLink
                     isActive={pathMatch}
@@ -189,7 +179,8 @@ class App extends Component {
                     <FontAwesomeIcon icon={faCog} />
                   </NavLink>
                 </li>
-              </ul>
+              </ul>}
+              
             </div>
             <StatusBarContainer />
             <ImportAndExportContainer />

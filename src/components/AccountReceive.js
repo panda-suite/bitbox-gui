@@ -10,7 +10,6 @@ import faQrcode from '@fortawesome/fontawesome-free-solid/faQrcode';
 import faClock from '@fortawesome/fontawesome-free-solid/faClock';
 
 import '../styles/accountReceive.scss';
-
 class AccountReceive extends Component {
   constructor(props) {
     super(props);
