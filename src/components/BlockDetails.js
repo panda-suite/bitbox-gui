@@ -32,12 +32,26 @@ class BlockDetails extends Component {
     })
   }
 
+  calculateOutputs(tx) {
+    let sum = 0;
+
+    for (let index = 0; index < tx.vout.length; index++) {
+      sum += tx.vout[index].value;
+    }
+
+    return sum;
+  }
+
   render() {
-    let block = underscore.findWhere(this.props.blockchain.chain, {index: +this.props.match.params.block_id});
+    const blockId = this.props.match.params.block_id
+
+    let block = underscore.findWhere(this.props.blockchain.chain, {
+      height: +blockId
+    });
 
     if (this.state.redirect && this.state.transaction) {
       return (<Redirect to={{
-        pathname: `/blocks/${this.props.match.params.block_id}/transactions/${this.state.transaction.txid}`
+        pathname: `/blocks/${blockId}/transactions/${this.state.transaction.txid}`
       }} />)
     } else if (this.state.redirect) {
       return (<Redirect to={{
@@ -46,32 +60,42 @@ class BlockDetails extends Component {
     }
 
     let txs = [];
-    block.transactions.forEach((tx, idx) => {
+    block.tx.forEach((tx, idx) => {
       let ins = [];
-      tx.inputs.forEach((inp, ind) => {
-        // if(this.props.configuration.displayCashaddr) {
-        //   inp = bitbox.Address.toCashAddress(inp.inputPubKey);
-        // } else {
-        //   inp = inp.inputPubKey;
-        // }
-    //
-    //     ins.push(<li key={ind}>{inp}</li>);
-      })
-
       let outs = [];
-      tx.outputs.forEach((outp, ind) => {
-        if(this.props.configuration.displayCashaddr) {
-          outp = bitbox.Address.toCashAddress(outp.scriptPubKey.addresses[0]);
-        } else {
-          outp = outp.scriptPubKey.addresses[0];
-        }
-        outs.push(<li key={ind}>{outp}</li>);
+
+      tx.vin.forEach((input, index) => {
+        ins.push(
+            <li key={index}>
+              <pre>
+                <code>
+                {JSON.stringify(input, null, 2)}
+                </code>
+              </pre>
+            </li>
+        );
+      });
+
+      tx.vout.forEach((output, index) => {
+        outs.push(
+        <li key={index}>
+            <pre>
+              <code>
+                {JSON.stringify(output, null, 2)}
+              </code>
+            </pre>
+          </li>
+        );
       })
 
-      txs.push(
+      /**
+       * <td>VALUE <br />{this.calculateOutputs(tx)} BCH</td>
+       */
+
+        txs.push(
         <tbody key={idx} className="txSummary" onClick={this.handlexTransactionDetails.bind(this, tx)}>
           <tr className="tableFormatting">
-            <td><span className='subheader'>TX HASH</span> <br />{tx.hash}</td>
+            <td><span className='subheader'>TX HASH</span> <br />{tx.txid}</td>
             <td></td>
             <td></td>
             <td className="label coinbase">COINBASE</td>
@@ -79,8 +103,8 @@ class BlockDetails extends Component {
           <tr>
             <td>INPUTS <br /><ul>{ins}</ul></td>
             <td>OUTPUTS <br /><ul>{outs}</ul></td>
-            <td>VALUE <br />{bitbox.BitcoinCash.toBitcoinCash(tx.value)} BCH</td>
-            <td>DATE <br />{moment(tx.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
+            
+            <td>DATE <br />{moment(tx.time * 1000).format('MMMM Do YYYY, h:mm:ss a')}</td>
           </tr>
         </tbody>
       );
@@ -92,7 +116,7 @@ class BlockDetails extends Component {
           <tbody>
             <tr className="">
               <td className='important nextPage' onClick={this.handleRedirect.bind(this)}><FontAwesomeIcon icon={faArrowLeft} /> <span className='subheader'>BACK</span></td>
-              <td className='important'>BLOCK {block.index}</td>
+              <td className='important'>BLOCK {block.height}</td>
             </tr>
           </tbody>
         </table>
@@ -102,9 +126,9 @@ class BlockDetails extends Component {
               <td><span className='subheader'>BLOCK HASH</span> <br />{block.header}</td>
             </tr>
             <tr>
-              <td>HASHPREVBLOCK <br />{block.previousBlockHeader}</td>
-              <td>MINED ON <br />{moment(block.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
-              <td>TX COUNT <br />{block.transactions.length}</td>
+              <td>HASHPREVBLOCK <br />{block.previousblockhash}</td>
+              <td>MINED ON <br />{moment(block.time * 1000).format('MMMM Do YYYY, h:mm:ss a')}</td>
+              <td>TX COUNT <br />{block.tx.length}</td>
               <td>DIFFICULTY <br />0</td>
               <td>NONCE <br />0</td>
             </tr>

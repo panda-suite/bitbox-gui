@@ -42,7 +42,6 @@ import reduxStore from '../utilities/ReduxStore'
 import '../styles/theme.scss';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 
 // redux actions
 import {
@@ -65,7 +64,8 @@ class App extends Component {
     Miner.setUpReduxStore()
     Miner.createAccounts()
     Miner.createCoinbaseTx();
-    Miner.mineBlock();
+    Miner.syncChain();
+    // Miner.mineBlock();
   }
 
   handlePathMatch(path) {

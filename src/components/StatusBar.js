@@ -21,6 +21,10 @@ class StatusBar extends Component {
     Miner.mineBlock();
   }
 
+  syncChain() {
+    Miner.syncChain();
+  }
+
   render() {
     return (
       <div className="pure-menu pure-menu-horizontal networkInfo">
@@ -37,6 +41,10 @@ class StatusBar extends Component {
           </li>
           <li className="pure-menu-item">
             <button className='pure-button danger-background' onClick={this.createBlock.bind(this)}><FontAwesomeIcon icon={faCube} /> Create block</button>
+          </li>
+
+          <li className="pure-menu-item">
+            <button className='pure-button danger-background' onClick={this.syncChain.bind(this)}><FontAwesomeIcon icon={faCube} /> Sync chain</button>
           </li>
         </ul>
       </div>

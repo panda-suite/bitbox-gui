@@ -6,6 +6,7 @@ import Transaction from '../models/Transaction';
 import Output from '../models/Output';
 import Input from '../models/Input';
 import Bitcoin from 'bitcoinjs-lib';
+import * as bch from "../bchjs";
 
 import {
   createConfig,
@@ -24,7 +25,8 @@ import {
 
 import {
   createBlockchain,
-  addBlock
+  addBlock,
+  syncBlockchain
 } from '../actions/BlockchainActions';
 
 import {
@@ -148,8 +150,24 @@ class Miner {
 
   }
 
-  static mineBlock() {
+  static async syncChain() {
+    console.log('sync chain')
+
+    const blocks = await bch.getBlocks();
+    debugger;
+
+    let state = reduxStore.getState();
+    let blockchain = state.blockchain;
+
+    blockchain.chain = blocks;
+
+    reduxStore.dispatch(syncBlockchain(blockchain));
+  }
+
+  static async mineBlock() {
     console.log('mining block')
+
+    return;
 
     let a = bitbox.BitcoinCash.address();
     let script = bitbox.Script;

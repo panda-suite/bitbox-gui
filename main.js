@@ -1,6 +1,5 @@
 require("babel-register");
 
-
 let electron = require('electron');
 
 // Module to control application life.
@@ -18,10 +17,6 @@ const store = new Store();
 
 let bc = require('./bc');
 let BitcoinCash = bc.BitcoinCash;
-
-let sv = require('./sv');
-let Sv = sv.Server;
-let Server = new Sv();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

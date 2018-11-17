@@ -3,14 +3,16 @@ import Block from './Block';
 import underscore from 'underscore';
 import '../styles/blocks.scss';
 
+import * as bch from "../bchjs";
+
 class Blocks extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-
     let blocks = [];
+    debugger;
     if(this.props.blockchain.chain.length) {
       let chain = underscore.sortBy(this.props.blockchain.chain, 'index');
       chain.reverse().forEach((block, index) => {

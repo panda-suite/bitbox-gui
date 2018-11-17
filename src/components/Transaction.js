@@ -27,8 +27,13 @@ class Transaction extends Component {
   }
 
   render() {
-    let block = underscore.findWhere(this.props.blockchain.chain, {index: +this.props.match.params.block_id});
-    let tx = underscore.findWhere(block.transactions, {txid: this.props.match.params.transaction_id});
+    let block = underscore.findWhere(this.props.blockchain.chain, {
+      height: +this.props.match.params.block_id
+    });
+
+    let tx = underscore.findWhere(block.tx, {
+      txid: this.props.match.params.transaction_id
+    });
 
     if (this.state.redirect) {
       return <Redirect
@@ -40,7 +45,7 @@ class Transaction extends Component {
     }
 
     let inputs = [];
-    tx.inputs.forEach((input, index) => {
+    tx.vin.forEach((input, index) => {
       // if(this.props.configuration.wallet.displayCashaddr) {
       //   input.inputPubKey = bitbox.Address.toCashAddress(input.inputPubKey);
       // }
@@ -60,12 +65,9 @@ class Transaction extends Component {
       //   </table>
       // );
     });
-
+    debugger;
     let outputs = [];
-    tx.outputs.forEach((output, index) => {
-      if(!this.props.configuration.wallet.displayCashaddr) {
-        output.scriptPubKey.addresses[0] = bitbox.Address.toLegacyAddress(output.scriptPubKey.addresses[0]);
-      }
+    tx.vout.forEach((output, index) => {
       outputs.push(
         <table className="pure-table tableFormatting" key={index}>
           <tbody>
@@ -76,7 +78,7 @@ class Transaction extends Component {
               <td className='breakWord'>LOCK SCRIPT<br /> {output.scriptPubKey.asm}</td>
             </tr>
             <tr>
-              <td className='breakWord'>VALUE<br /> {bitbox.BitcoinCash.toBitcoinCash(output.value)} BCH</td>
+              <td className='breakWord'>VALUE<br /> {output.value} BCH</td>
             </tr>
           </tbody>
         </table>
@@ -89,19 +91,18 @@ class Transaction extends Component {
           <tbody>
             <tr className="">
               <td className='important nextPage' onClick={this.handleRedirect.bind(this)}><FontAwesomeIcon icon={faArrowLeft} /> <span className='subheader'>BACK</span></td>
-              <td className='important'>TRANSACTION {tx.hash}</td>
+              <td className='important'>TRANSACTION {tx.txid}</td>
             </tr>
           </tbody>
         </table>
         <table className="pure-table tableFormatting">
           <tbody>
             <tr>
-              <td colSpan="4" className='breakWord'><span className='subheader'>HEX</span> <br />{tx.rawHex}</td>
-              <td className="label coinbase">COINBASE</td>
+              <td colSpan="4" className='breakWord'><span className='subheader'>TXID</span> <br />{tx.txid}</td>
+              <td colSpan="4"><span className='subheader'>Confirmations</span> <br />{tx.confirmations}</td>
             </tr>
             <tr>
-              <td>VALUE <br />{bitbox.BitcoinCash.toBitcoinCash(tx.value)} BCH</td>
-              <td>DATE <br />{moment(tx.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
+              <td>DATE <br />{moment(tx.time * 1000).format('MMMM Do YYYY, h:mm:ss a')}</td>
             </tr>
           </tbody>
         </table>

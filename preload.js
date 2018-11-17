@@ -5,7 +5,7 @@ window.Store = require('electron-store');
 window.bitbox = new BITBOXCli({
   protocol: 'http',
   host: '127.0.0.1',
-  port: 8332,
+  port: 48332,
   username: '',
   password: ''
 });

@@ -1,20 +1,25 @@
-# BITBOX GUI
+# Pandacash Explorer
 
 ## One Click Blockchain
-
 Quickly fire up a personal Bitcoin Cash blockchain which you can use to execute commands while controlling how the chain operates.
+Pandacash Explorer will connect to your local pandacash BCH blockchain instance.
 
 Inpired by [ganache](http://truffleframework.com/ganache/).
 
-More info: https://developer.bitcoin.com/gui
-
 ## Setup
+### Pandacash-cli
+It will start your blockchain instance:
+```
+npm install -g pandacash-cli
+pandacash-cli
+```
 
-1. `git clone https://github.com/Bitcoin-com/bitbox-gui.git`
-2. `cd bitbox-gui`
+### Explorer
+1. `git clone https://github.com/panda-suite/pandacash-explorer`
+2. `cd pandacash-explorer`
 3. `npm install`
 4. `npm run build`
-5. `npm test`
-6. `npm start`
+5. `npm start`
 
-Or download the app from [https://developer.bitcoin.com/gui](https://developer.bitcoin.com/gui). Verify the authenticity of these files before running them.  You can find signatures and checksum hashes on [github](https://github.com/Bitcoin-com/keys-n-hashes).
+# Licence
+MIT
