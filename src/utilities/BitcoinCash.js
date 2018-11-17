@@ -1,13 +1,14 @@
 import Address from '../models/Address';
 
 import Bitcoin from 'bitcoinjs-lib';
-let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
-let bitbox = new BITBOXCli();
 import underscore from 'underscore';
+
+const BITBOXSDK = require('bitbox-sdk/lib/bitbox-sdk');
+const bitbox = new BITBOXSDK.default();
 
 class BitcoinCash {
   static returnPrivateKeyWIF(pubAddress, accounts) {
-    let address = bitbox.Address.toCashAddress(pubAddress);
+    let address = bitbox.Address.toCashAddress(pubAddress, true);
     let privateKeyWIF;
 
     let errorMsg = '';
@@ -78,6 +79,8 @@ class BitcoinCash {
       account.addresses = bitbox.HDNode.createAccount([external, internal]);
       accounts.push(account);
     };
+
+    console.log(accounts);
 
     return accounts;
   }

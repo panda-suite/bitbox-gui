@@ -44,6 +44,10 @@ class AccountReceive extends Component {
     })
   }
 
+  getCashAddress(address) {
+    return bitbox.Address.toCashAddress(address, true);
+  }
+
   render() {
     if(this.state.redirect) {
       return (<Redirect to={{
@@ -63,14 +67,14 @@ class AccountReceive extends Component {
       let child = hdNode.derivePath(`0/${i}`)
       let address = bitbox.HDNode.toLegacyAddress(child);
       freshAddresses.push(<li id={address} key={i} onClick={this.handleRedirect.bind(this)}>
-        /{i} {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(address) : address}
+        /{i} {this.props.configuration.displayCashaddr ? this.getCashAddress(address) : address}
       </li>);
     }
 
     for (let i = 0; i < addressHeight; i++) {
       let address = account.addresses.chains[0].addresses[i];
       previousAddresses.push(<li id={address} key={i} onClick={this.handleRedirect.bind(this)}>
-        /{i} {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(address) : address}<br />
+        /{i} {this.props.configuration.displayCashaddr ? this.getCashAddress(address) : address}<br />
         <span className='totalReceived'>Total received: 0 BCH</span>
       </li>);
     }

@@ -17,8 +17,9 @@ import faCube from '@fortawesome/fontawesome-free-solid/faCube';
 class StatusBar extends Component {
 
   createBlock() {
-    Miner.createCoinbaseTx();
-    Miner.mineBlock();
+    alert("NOT IMPLEMENTED");
+    //Miner.createCoinbaseTx();
+    //Miner.mineBlock();
   }
 
   syncChain() {

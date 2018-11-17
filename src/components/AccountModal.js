@@ -13,7 +13,7 @@ class AccountModal extends Component {
 
   render() {
     let address = this.props.account.addresses.getChainAddress(0);
-    let addressHeight = this.props.account.addresses.chains[0].find(bitbox.Address.toLegacyAddress(address))
+    let addressHeight = this.props.account.addresses.chains[0].find(bitbox.Address.toLegacyAddress(address, true))
     let hdNode = bitbox.HDNode.fromXPriv(this.props.account.xpriv);
     let childNode = hdNode.derivePath(`0/${addressHeight}`);
     let privateKeyWIF = bitbox.HDNode.toWIF(childNode);
@@ -26,7 +26,7 @@ class AccountModal extends Component {
         <div className="modal-content">
           <div className="modal-header">
             <span onClick={this.hideAccountModal.bind(this, this.props.account)} className="close">&times;</span>
-            <h2><FontAwesomeIcon icon={faQrcode} /> {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(address) : address}</h2>
+            <h2><FontAwesomeIcon icon={faQrcode} /> {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(address, true) : address}</h2>
           </div>
           <div className="modal-body">
             <h3><FontAwesomeIcon icon={faKey} /> Private Key WIF</h3>

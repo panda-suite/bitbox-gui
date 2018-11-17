@@ -7,6 +7,9 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faAsterisk from '@fortawesome/fontawesome-free-solid/faAsterisk';
 import faKey from '@fortawesome/fontawesome-free-solid/faKey';
 
+const BITBOXSDK = require('bitbox-sdk/lib/bitbox-sdk');
+const bitbox = new BITBOXSDK.default();
+
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +29,15 @@ class Account extends Component {
   }
 
   render() {
-
     let address;
+
     if(this.props.displayCashaddr) {
-      address = <span>{bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0))}</span>;
+      address = <span>{bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0), true)}</span>;
     } else {
-      address = <span>{bitbox.Address.toLegacyAddress(this.props.account.addresses.getChainAddress(0))}</span>;
+      address = <span>{bitbox.Address.toLegacyAddress(this.props.account.addresses.getChainAddress(0), true)}</span>;
     }
+
+    console.log(address);
 
     let coinbase;
     if(this.props.account.index === 0) {

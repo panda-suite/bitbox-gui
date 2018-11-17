@@ -26,10 +26,10 @@ class Convert extends Component {
     let xpub = bitbox.HDNode.toXPub(node);
     this.props.updateConvertValue('xpub', xpub);
 
-    let cashaddr = bitbox.HDNode.toCashAddress(node);
+    let cashaddr = bitbox.HDNode.toCashAddress(node, true);
     this.props.updateConvertValue('cashaddr', cashaddr);
 
-    let base58Check = bitbox.HDNode.toLegacyAddress(node);
+    let base58Check = bitbox.HDNode.toLegacyAddress(node, true);
     this.props.updateConvertValue('base58Check', base58Check);
   }
 
@@ -39,10 +39,10 @@ class Convert extends Component {
     let xpub = inputValue;
     this.props.updateConvertValue('xpub', xpub);
 
-    let cashaddr = bitbox.HDNode.toCashAddress(node);
+    let cashaddr = bitbox.HDNode.toCashAddress(node, true);
     this.props.updateConvertValue('cashaddr', cashaddr);
 
-    let base58Check = bitbox.HDNode.toLegacyAddress(node);
+    let base58Check = bitbox.HDNode.toLegacyAddress(node, true);
     this.props.updateConvertValue('base58Check', base58Check);
   }
 
@@ -52,18 +52,18 @@ class Convert extends Component {
     let wif = inputValue;
     this.props.updateConvertValue('privateKeyWIF', wif);
 
-    let cashaddr = bitbox.ECPair.toCashAddress(ecpair);
+    let cashaddr = bitbox.ECPair.toCashAddress(ecpair, true);
     this.props.updateConvertValue('cashaddr', cashaddr);
 
-    let base58Check = bitbox.ECPair.toLegacyAddress(ecpair);
+    let base58Check = bitbox.ECPair.toLegacyAddress(ecpair, true);
     this.props.updateConvertValue('base58Check', base58Check);
   }
 
   isOther(inputValue) {
-    let cashaddr = bitbox.Address.toCashAddress(inputValue);
+    let cashaddr = bitbox.Address.toCashAddress(inputValue, true);
     this.props.updateConvertValue('cashaddr', cashaddr);
 
-    let base58Check = bitbox.Address.toLegacyAddress(inputValue);
+    let base58Check = bitbox.Address.toLegacyAddress(inputValue, true);
     this.props.updateConvertValue('base58Check', base58Check);
   }
 

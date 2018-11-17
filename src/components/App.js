@@ -63,7 +63,7 @@ class App extends Component {
     // Set up default redux store
     Miner.setUpReduxStore()
     Miner.createAccounts()
-    Miner.createCoinbaseTx();
+    // Miner.createCoinbaseTx();
     Miner.syncChain();
     // Miner.mineBlock();
   }

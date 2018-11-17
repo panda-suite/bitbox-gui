@@ -29,7 +29,7 @@ class Address extends Component {
           <tbody>
             <tr className="">
               <td className='important nextPage' onClick={this.handleRedirect.bind(this)}><FontAwesomeIcon icon={faArrowLeft} /> <span className='subheader'>BACK</span></td>
-              <td className='important'>ADDRESS {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(this.state.address) : this.state.address}</td>
+              <td className='important'>ADDRESS {this.props.configuration.displayCashaddr ? bitbox.Address.toCashAddress(this.state.address, true) : this.state.address}</td>
             </tr>
           </tbody>
         </table>

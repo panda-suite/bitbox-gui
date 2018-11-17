@@ -130,7 +130,7 @@ class Server {
             reqSigs: 1,
             type: "pubkeyhash",
             addresses: [
-              bitbox.Address.toCashAddress(a.fromOutputScript(output.script))
+              bitbox.Address.toCashAddress(a.fromOutputScript(output.script), true)
             ]
           },
           value: output.value
