@@ -8,7 +8,6 @@ export const UPDATE_SIGN_AND_VERIFY_VALUE = 'UPDATE_SIGN_AND_VERIFY_VALUE';
 /*
  * action creators
  */
-
 export function createSignAndVerify() {
   return { type: CREATE_SIGN_AND_VERIFY }
 }

@@ -30,11 +30,13 @@ export default function configuration(state = {}, action) {
         config.wallet.password = "";
       }
 
+      /**
       if(action.prop === 'displayTestnet' && action.checked) {
         config.wallet.network = 'testnet';
       } else if(action.prop === 'displayTestnet' && !action.checked) {
         config.wallet.network = 'bitcoin';
       }
+      */
 
       config.wallet[action.prop] = action.checked;
       return Object.assign({}, state, config)

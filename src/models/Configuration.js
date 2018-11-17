@@ -1,14 +1,14 @@
 class Configuration {
   constructor() {
     this.wallet = {
-      autogenerateHDMnemonic: true,
+      autogenerateHDMnemonic: false,
       autogenerateHDPath: true,
       displayCashaddr: true,
-      displayTestnet: false,
+      //displayTestnet: false,
       usePassword: false,
       entropy: 16,
-      network: 'bitcoin',
-      mnemonic: '',
+      network: 'regtest',
+      mnemonic: 'fringe demise grab turkey retreat shy genuine alone pass social cable enhance',
       totalAccounts: 10,
       HDPath: {
         masterKey: "m",
