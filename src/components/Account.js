@@ -31,6 +31,8 @@ class Account extends Component {
   render() {
     let address;
 
+    console.log(this.props.account.addresses.getChainAddress(0));
+
     if(this.props.displayCashaddr) {
       address = <span>{bitbox.Address.toCashAddress(this.props.account.addresses.getChainAddress(0), true)}</span>;
     } else {
