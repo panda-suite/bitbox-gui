@@ -2,7 +2,7 @@ import Address from '../models/Address';
 
 import Bitcoin from 'bitcoinjs-lib';
 import underscore from 'underscore';
-
+const pandaCore = require('pandacash-core');
 const BITBOXSDK = require('bitbox-sdk/lib/bitbox-sdk');
 const bitbox = new BITBOXSDK.default();
 
